@@ -1,9 +1,6 @@
-const { autoUpdater } = require('electron')
 const THREE = require('three')
 
 let OrbitControls = require('three-orbit-controls')(THREE)
-
-console.log(OrbitControls)
 
 window.addEventListener('DOMContentLoaded', () => {
   // SCENE
