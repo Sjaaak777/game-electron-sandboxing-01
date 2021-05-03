@@ -1,6 +1,12 @@
+const { autoUpdater } = require('electron')
 const THREE = require('three')
 
+let OrbitControls = require('three-orbit-controls')(THREE)
+
+console.log(OrbitControls)
+
 window.addEventListener('DOMContentLoaded', () => {
+  // SCENE
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(
     75,
@@ -12,7 +18,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.body.appendChild(renderer.domElement)
-  
+
+  controls = new OrbitControls(camera)
+  controls.enableDamping = true
+  controls.dampingFactor = 0.1
+
   // FLOOR
   const floorGeometry = new THREE.BoxGeometry(20, 0.05, 20)
   const floorMaterial = new THREE.MeshBasicMaterial({ color: 0x777777 })
@@ -31,6 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   cube.position.y = 1
 
+  // CAMERA
   camera.position.z = 5
   camera.position.x = 2
   camera.position.y = 1
@@ -41,6 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
     cube.rotation.x += 0.01
     cube.rotation.y += 0.01
 
+    controls.update()
     renderer.render(scene, camera)
   }
 

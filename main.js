@@ -4,13 +4,13 @@ const menu = require('./topMenu')
 
 let mainMenu = new Menu.buildFromTemplate(menu)
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 900,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, 'preload.js'),
+    },
   })
 
   win.loadFile('index.html')
@@ -19,12 +19,11 @@ function createWindow () {
 app.whenReady().then(() => {
   createWindow()
 
-      Menu.setApplicationMenu(mainMenu)
-      
+  Menu.setApplicationMenu(mainMenu)
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow()
-
     }
   })
 })
