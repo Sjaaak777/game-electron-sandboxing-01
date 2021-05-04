@@ -1,6 +1,6 @@
 const THREE = require('three')
 
-let OrbitControls = require('three-orbit-controls')(THREE)
+const OrbitControls = require('three-orbit-controls')(THREE)
 
 window.addEventListener('DOMContentLoaded', () => {
   // SCENE
@@ -12,6 +12,17 @@ window.addEventListener('DOMContentLoaded', () => {
     1000
   )
 
+  // LIGHT
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+  scene.add(ambientLight)
+
+  const pointLight = new THREE.PointLight(0xffffff, 0.5)
+  pointLight.position.x = 2
+  pointLight.position.y = 3
+  pointLight.position.z = 4
+
+  scene.add(pointLight)
+
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.body.appendChild(renderer.domElement)
@@ -22,14 +33,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // FLOOR
   const floorGeometry = new THREE.BoxGeometry(20, 0.05, 20)
-  const floorMaterial = new THREE.MeshBasicMaterial({ color: 0x777777 })
+  const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x74e6e1 })
   const floor = new THREE.Mesh(floorGeometry, floorMaterial)
   floor.position.y = -0.5
   scene.add(floor)
 
   // BOX
   const geometry = new THREE.BoxGeometry()
-  const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+  const boxMaterial = new THREE.MeshStandardMaterial({ color: 0xe67479 })
   const cube = new THREE.Mesh(geometry, boxMaterial)
   scene.add(cube)
 
@@ -46,8 +57,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const animate = function () {
     requestAnimationFrame(animate)
 
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.01
+    cube.rotation.x += 0.005
+    cube.rotation.y += 0.005
 
     controls.update()
     renderer.render(scene, camera)
