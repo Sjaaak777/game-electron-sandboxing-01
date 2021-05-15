@@ -1,5 +1,6 @@
 const THREE = require('three')
 const OrbitControls = require('three-orbit-controls')(THREE)
+const { cube } = require('./assets/cube')
 
 window.addEventListener('DOMContentLoaded', () => {
   // SCENE
@@ -43,14 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
   scene.add(floor)
 
   // BOX
-  const geometry = new THREE.BoxGeometry(1, 1, 1)
-  const boxMaterial = new THREE.MeshStandardMaterial({ color: 0xe67479 })
-  const cube = new THREE.Mesh(geometry, boxMaterial)
   scene.add(cube)
-
-  cube.position.x = 1
-  cube.position.y = 1
-  cube.position.z = 1
 
   // CAMERA
   camera.position.z = 5
