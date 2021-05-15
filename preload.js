@@ -1,6 +1,7 @@
 const THREE = require('three')
 const OrbitControls = require('three-orbit-controls')(THREE)
 const { cube } = require('./assets/cube')
+const { house } = require('./assets/house')
 
 window.addEventListener('DOMContentLoaded', () => {
   // SCENE
@@ -14,9 +15,8 @@ window.addEventListener('DOMContentLoaded', () => {
     0.1,
     1000
   )
-  camera.position.z = 5
-  camera.position.x = 2
-  camera.position.y = 1
+
+  camera.position.set(5, 10, 9)
 
   // RENDERER
   const renderer = new THREE.WebGLRenderer()
@@ -51,6 +51,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // CUBE
   scene.add(cube)
+
+  // HOUSE
+  scene.add(house)
 
   // ANIMATE
   const animate = function () {
