@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // RENDERER
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.shadowMap.enabled = true
   document.body.appendChild(renderer.domElement)
 
   // ORBITCONTROLS
@@ -37,16 +38,18 @@ window.addEventListener('DOMContentLoaded', () => {
   scene.add(ambientLight)
 
   const pointLight = new THREE.PointLight(0xffffff, 0.5)
-  pointLight.position.x = 2
-  pointLight.position.y = 3
-  pointLight.position.z = 4
+  pointLight.position.set(2, 6, 4)
   scene.add(pointLight)
+  pointLight.castShadow = true
+  pointLight.shadow.mapSize.width = 1024 / 2
+  pointLight.shadow.radius = 3
 
   // FLOOR
   const floorGeometry = new THREE.BoxGeometry(20, 0.05, 20)
   const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x74e6e1 })
   const floor = new THREE.Mesh(floorGeometry, floorMaterial)
   floor.position.y = -0.05
+  floor.receiveShadow = true
   scene.add(floor)
 
   // CUBE
