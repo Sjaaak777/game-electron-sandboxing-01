@@ -1,2 +1,2 @@
-# template-game-electron-three
-Starter with cube.
+# First experiment to create a game
+Starter with cube from the template
