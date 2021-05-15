@@ -5,12 +5,18 @@ const { cube } = require('./assets/cube')
 window.addEventListener('DOMContentLoaded', () => {
   // SCENE
   const scene = new THREE.Scene()
+  scene.background = new THREE.Color(0xdddddd)
+
+  // CAMERA
   const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
   )
+  camera.position.z = 5
+  camera.position.x = 2
+  camera.position.y = 1
 
   // RENDERER
   const renderer = new THREE.WebGLRenderer()
@@ -43,13 +49,8 @@ window.addEventListener('DOMContentLoaded', () => {
   floor.position.y = -0.05
   scene.add(floor)
 
-  // BOX
+  // CUBE
   scene.add(cube)
-
-  // CAMERA
-  camera.position.z = 5
-  camera.position.x = 2
-  camera.position.y = 1
 
   // ANIMATE
   const animate = function () {
