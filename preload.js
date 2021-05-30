@@ -1,7 +1,9 @@
 const THREE = require('three')
 const OrbitControls = require('three-orbit-controls')(THREE)
+const handlerInput = require('./handlers/input-handler')
 const { cube } = require('./assets/cube')
 const { house } = require('./assets/house')
+const { player } = require('./assets/player')
 
 window.addEventListener('DOMContentLoaded', () => {
   // SCENE
@@ -45,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
   pointLight.shadow.radius = 3
 
   // FLOOR
-  const floorGeometry = new THREE.BoxGeometry(20, 0.05, 20)
+  const floorGeometry = new THREE.BoxGeometry(150, 0.05, 150)
   const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x74e6e1 })
   const floor = new THREE.Mesh(floorGeometry, floorMaterial)
   floor.position.y = -0.05
@@ -58,6 +60,10 @@ window.addEventListener('DOMContentLoaded', () => {
   // HOUSE
   scene.add(house)
 
+  // PLAYER
+  scene.add(player)
+  player.position.x += 1
+
   // ANIMATE
   const animate = function () {
     requestAnimationFrame(animate)
@@ -67,6 +73,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     controls.update()
     renderer.render(scene, camera)
+
+    handlerInput.keyPressed
+    handlerInput.keyReleased
+    player.position.x += player.speedX
+    player.position.z += player.speedZ
   }
 
   animate()
